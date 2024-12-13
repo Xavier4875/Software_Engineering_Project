@@ -1,0 +1,18 @@
+#This file changes per enviroment you are running on. Download the image from dockerhub
+#From there share resources and run
+#docker-compose build
+#docker-compose up
+
+#https://www.howtogeek.com/devops/how-to-run-gui-applications-in-a-docker-container/
+
+version: "3"
+
+services:
+  app:
+    image: ${DOCKER_REGISTRY_USER}/adventure
+    build: ./
+    environment:
+      - DISPLAY=${DISPLAY}
+    volumes:
+      - /tmp/.X11-unix:/tmp/.X11-unix
+    network_mode: host
